@@ -1,0 +1,19 @@
+{
+  "name": "pwatemplate",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@maslick/radiaslider": "^1.9.3",
+    "@vitejs/plugin-vue": "^1.1.4",
+    "@vueuse/core": "^4.2.2",
+    "vue": "^3.0.6"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.0.4",
+    "vite": "^1.0.0-rc.13",
+    "vite-plugin-pwa": "^0.5.4"
+  }
+}
