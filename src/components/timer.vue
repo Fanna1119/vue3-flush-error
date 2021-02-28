@@ -1,10 +1,11 @@
 <template>
   <canvas id="vue-slider" ref="sliderRef" width="300" height="300"></canvas>
+  <button @click="valuechange(5)">dance monmek</button>
 </template>
 
 <script>
 import CircularSlider from "@maslick/radiaslider";
-import { onMounted, ref, toRefs, watch, watchEffect } from "vue";
+import { onMounted, reactive, ref, toRefs, watch, watchEffect } from "vue";
 export default {
   emits: ["sliderData"],
   props: {
@@ -16,7 +17,13 @@ export default {
   setup(props, { emit }) {
     const sliderRef = ref(null);
 
+    const sliderdata = reactive({
+      valuechange: (val) => sliderRef.value.setSliderValue("1", val),
+    });
+
     let { changevalue } = toRefs(props);
+
+    let { valuechange } = toRefs(sliderdata);
 
     onMounted(() => {
       //create slider instance
@@ -43,23 +50,9 @@ export default {
       });
     });
 
-    //error occurs here.
-    watch(
-      changevalue,
-      (val) => {
-        //watch runs fine the first time.
-        //second change of the watch value throws errors
-
-        //`Unhandled error during execution of scheduler flush. This is likely a Vue internals bug.`.
-        sliderRef.value.setSliderValue("1", val);
-        //second watch throws:
-        //TypeError: sliderRef.value.setSliderValue is not a function
-      }
-      // { deep: true }
-    );
-
     return {
       sliderRef,
+      valuechange,
     };
   },
 };
